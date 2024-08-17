@@ -1,0 +1,72 @@
+[gd_scene load_steps=7 format=3 uid="uid://dq7ilxoadvyin"]
+
+[ext_resource type="Script" path="res://camera.gd" id="1_s1vkc"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0dlc8"]
+albedo_color = Color(0.2484, 0.2484, 0.2484, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ev6ex"]
+material = SubResource("StandardMaterial3D_0dlc8")
+size = Vector3(4, 0.5, 4)
+
+[sub_resource type="CameraTexture" id="CameraTexture_medvu"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_h8sgh"]
+albedo_color = Color(0.0969959, 0.308875, 0.204936, 1)
+albedo_texture = SubResource("CameraTexture_medvu")
+
+[sub_resource type="BoxMesh" id="BoxMesh_3ssp7"]
+material = SubResource("StandardMaterial3D_h8sgh")
+size = Vector3(4, 0.5, 4)
+
+[node name="Tractor" type="Node3D"]
+
+[node name="Floor" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_ev6ex")
+
+[node name="Floor10" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0)
+mesh = SubResource("BoxMesh_ev6ex")
+
+[node name="Floor2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 1.98501, -2.22691)
+mesh = SubResource("BoxMesh_3ssp7")
+
+[node name="Floor6" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -0.0174352, 1.98501, 2.20386)
+mesh = SubResource("BoxMesh_3ssp7")
+
+[node name="Floor7" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.520354, -0.853951, -3.73274e-08, 0, -4.37114e-08, 1, -0.853951, -0.520354, -2.27454e-08, 1.78589, 2.06276, 1.51333)
+mesh = SubResource("BoxMesh_3ssp7")
+
+[node name="Floor3" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.866025, -0.5, -2.18557e-08, 0, -4.37114e-08, 1, -0.5, -0.866025, -3.78552e-08, -1.62685, 1.98501, -1.85183)
+mesh = SubResource("BoxMesh_3ssp7")
+
+[node name="Floor4" type="MeshInstance3D" parent="."]
+transform = Transform3D(-5.96046e-08, -1, -4.37114e-08, 0, -4.37114e-08, 1, -1, 5.96046e-08, 1.77636e-15, -2.19032, 1.98501, -0.05558)
+mesh = SubResource("BoxMesh_3ssp7")
+
+[node name="Floor8" type="MeshInstance3D" parent="."]
+transform = Transform3D(-5.96046e-08, -1, -4.37114e-08, 0, -4.37114e-08, 1, -1, 5.96046e-08, 1.77636e-15, 2.25322, 1.98501, -0.05558)
+mesh = SubResource("BoxMesh_3ssp7")
+
+[node name="Floor9" type="MeshInstance3D" parent="."]
+transform = Transform3D(-0.617818, -0.786321, -3.43712e-08, 0, -4.37114e-08, 1, -0.786321, 0.617818, 2.70057e-08, 1.84594, 1.98501, -1.60134)
+mesh = SubResource("BoxMesh_3ssp7")
+
+[node name="Floor5" type="MeshInstance3D" parent="."]
+transform = Transform3D(-0.707107, -0.707107, -3.09086e-08, 0, -4.37114e-08, 1, -0.707107, 0.707107, 3.09086e-08, -1.83382, 1.98501, 1.74711)
+mesh = SubResource("BoxMesh_3ssp7")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+script = ExtResource("1_s1vkc")
+pan_sensitivity = 0.05
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.90666, 0)
+light_color = Color(0.726246, 0, 0, 1)
+light_energy = 50.0
+omni_range = 10.0
