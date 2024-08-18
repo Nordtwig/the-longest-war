@@ -40,7 +40,4 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 [node name="Camera3D" parent="Tractor" index="10"]
 current = true
 
-[node name="OmniLight3D" parent="Tractor" index="11"]
-light_energy = 50.0
-
 [editable path="Tractor"]
