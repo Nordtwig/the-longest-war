@@ -77,3 +77,11 @@ omni_range = 10.0
 [node name="Monitor" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.989599, 0.143855, 0, -0.143855, 0.989599, -0.0585369, 1.75541, -2.0216)
 mesh = SubResource("BoxMesh_6khfr")
+
+[node name="Monitor2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.989599, 0.143855, 0, -0.143855, 0.989599, 1.09446, 1.75541, -2.0216)
+mesh = SubResource("BoxMesh_6khfr")
+
+[node name="Monitor3" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.989599, 0.143855, 0, -0.143855, 0.989599, -1.23994, 1.75541, -2.0216)
+mesh = SubResource("BoxMesh_6khfr")
