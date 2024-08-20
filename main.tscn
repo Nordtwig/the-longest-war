@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://cba803ddpb2dv"]
+[gd_scene load_steps=8 format=3 uid="uid://cba803ddpb2dv"]
 
 [ext_resource type="PackedScene" uid="uid://dq7ilxoadvyin" path="res://tractor.tscn" id="1_nmc44"]
 
@@ -22,6 +22,9 @@ albedo_color = Color(0.212465, 0.185768, 0.159864, 1)
 material = SubResource("StandardMaterial3D_3dhc5")
 size = Vector2(100, 100)
 
+[sub_resource type="BoxMesh" id="BoxMesh_6ayrp"]
+size = Vector3(10, 10, 10)
+
 [node name="Main" type="Node3D"]
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
@@ -34,10 +37,16 @@ environment = SubResource("Environment_buvk3")
 [node name="Ground" type="MeshInstance3D" parent="."]
 mesh = SubResource("PlaneMesh_nbpdq")
 
+[node name="House" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.00171, 4.91296, -42.93)
+mesh = SubResource("BoxMesh_6ayrp")
+
+[node name="House2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -28.2785, 4.91296, -22.106)
+mesh = SubResource("BoxMesh_6ayrp")
+
+[node name="House3" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32.1162, 4.91296, -21.8685)
+mesh = SubResource("BoxMesh_6ayrp")
+
 [node name="Tractor" parent="." instance=ExtResource("1_nmc44")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-
-[node name="Camera3D" parent="Tractor" index="10"]
-current = true
-
-[editable path="Tractor"]
