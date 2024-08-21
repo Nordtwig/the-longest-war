@@ -1,7 +1,7 @@
-[gd_scene load_steps=11 format=3 uid="uid://dq7ilxoadvyin"]
+[gd_scene load_steps=12 format=3 uid="uid://dq7ilxoadvyin"]
 
 [ext_resource type="Script" path="res://tractor.gd" id="1_36jy7"]
-[ext_resource type="Script" path="res://camera.gd" id="1_s1vkc"]
+[ext_resource type="Script" path="res://tractor_camera.gd" id="2_q4f2r"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_cntim"]
 size = Vector3(0.5, 0.5, 0.5)
@@ -28,27 +28,47 @@ size = Vector3(4, 0.5, 4)
 [sub_resource type="ViewportTexture" id="ViewportTexture_8gfnw"]
 viewport_path = NodePath("SubViewport")
 
+[sub_resource type="ViewportTexture" id="ViewportTexture_73dax"]
+viewport_path = NodePath("SubViewport2")
+
 [node name="Tractor" type="Node3D"]
 script = ExtResource("1_36jy7")
 
-[node name="ViewportPositioningMarker" type="Marker3D" parent="."]
+[node name="PositioningMarkers" type="Node3D" parent="."]
+
+[node name="FrontPositioningMarker" type="Marker3D" parent="PositioningMarkers"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.71543, -3.37914)
 
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="ViewportPositioningMarker"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0123656, 0.205863)
-mesh = SubResource("BoxMesh_cntim")
-skeleton = NodePath("../../SubViewport/FrontCamera")
+[node name="LeftFrontPositioningMarker" type="Marker3D" parent="PositioningMarkers"]
+transform = Transform3D(0.824442, 0, 0.565946, 0, 1, 0, -0.565946, 0, 0.824442, -2.59674, 3.70307, -3.00527)
 
-[node name="SubViewport" type="SubViewport" parent="."]
+[node name="SubViewport" type="SubViewport" parent="." node_paths=PackedStringArray("positioning_marker", "child_to_position")]
 size = Vector2i(192, 192)
+script = ExtResource("2_q4f2r")
+positioning_marker = NodePath("../PositioningMarkers/FrontPositioningMarker")
+child_to_position = NodePath("FrontCamera")
 
 [node name="FrontCamera" type="Node3D" parent="SubViewport"]
-unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.70307, -3.42841)
 
 [node name="Camera3D" type="Camera3D" parent="SubViewport/FrontCamera"]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="SubViewport/FrontCamera"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.255131)
+mesh = SubResource("BoxMesh_cntim")
+
+[node name="SubViewport2" type="SubViewport" parent="." node_paths=PackedStringArray("positioning_marker", "child_to_position")]
+size = Vector2i(192, 192)
+script = ExtResource("2_q4f2r")
+positioning_marker = NodePath("../PositioningMarkers/LeftFrontPositioningMarker")
+child_to_position = NodePath("LeftFrontCamera")
+
+[node name="LeftFrontCamera" type="Node3D" parent="SubViewport2"]
+transform = Transform3D(0.824442, 0, 0.565946, 0, 1, 0, -0.565946, 0, 0.824442, -2.59674, 3.70307, -3.00527)
+
+[node name="Camera3D" type="Camera3D" parent="SubViewport2/LeftFrontCamera"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="SubViewport2/LeftFrontCamera"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.255131)
 mesh = SubResource("BoxMesh_cntim")
 
@@ -99,10 +119,10 @@ transform = Transform3D(-0.707107, -0.707107, -3.09086e-08, 0, -4.37114e-08, 1, 
 visible = false
 mesh = SubResource("BoxMesh_3ssp7")
 
-[node name="Camera3D" type="Camera3D" parent="."]
+[node name="PlayerCamera" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
-script = ExtResource("1_s1vkc")
-pan_sensitivity = 0.05
+
+[node name="Camera3D" type="Camera3D" parent="PlayerCamera"]
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.90666, 0)
@@ -125,3 +145,7 @@ mesh = SubResource("BoxMesh_6khfr")
 [node name="Monitor3" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.989599, 0.143855, 0, -0.143855, 0.989599, -1.23994, 1.75541, -2.0216)
 mesh = SubResource("BoxMesh_6khfr")
+
+[node name="Sprite3D" type="Sprite3D" parent="Monitor3"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 2.98023e-08, 0, -2.98023e-08, 0.5, 0, 5.65052e-05, 0.50315)
+texture = SubResource("ViewportTexture_73dax")
