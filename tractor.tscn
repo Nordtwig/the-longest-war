@@ -3,9 +3,6 @@
 [ext_resource type="Script" path="res://tractor.gd" id="1_36jy7"]
 [ext_resource type="Script" path="res://tractor_camera.gd" id="2_q4f2r"]
 
-[sub_resource type="BoxMesh" id="BoxMesh_cntim"]
-size = Vector3(0.5, 0.5, 0.5)
-
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0dlc8"]
 albedo_color = Color(0.2484, 0.2484, 0.2484, 1)
 
@@ -28,6 +25,9 @@ size = Vector3(4, 0.5, 4)
 [sub_resource type="ViewportTexture" id="ViewportTexture_8gfnw"]
 viewport_path = NodePath("SubViewport")
 
+[sub_resource type="ViewportTexture" id="ViewportTexture_fwr4x"]
+viewport_path = NodePath("SubViewport3")
+
 [sub_resource type="ViewportTexture" id="ViewportTexture_73dax"]
 viewport_path = NodePath("SubViewport2")
 
@@ -40,7 +40,10 @@ script = ExtResource("1_36jy7")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.71543, -3.37914)
 
 [node name="LeftFrontPositioningMarker" type="Marker3D" parent="PositioningMarkers"]
-transform = Transform3D(0.824442, 0, 0.565946, 0, 1, 0, -0.565946, 0, 0.824442, -2.59674, 3.70307, -3.00527)
+transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, -2.51997, 3.70307, -2.37485)
+
+[node name="RightFrontPositioningMarker" type="Marker3D" parent="PositioningMarkers"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 2.37049, 3.70307, -2.29229)
 
 [node name="SubViewport" type="SubViewport" parent="." node_paths=PackedStringArray("positioning_marker", "child_to_position")]
 size = Vector2i(192, 192)
@@ -53,10 +56,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.70307, -3.42841)
 
 [node name="Camera3D" type="Camera3D" parent="SubViewport/FrontCamera"]
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="SubViewport/FrontCamera"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.255131)
-mesh = SubResource("BoxMesh_cntim")
-
 [node name="SubViewport2" type="SubViewport" parent="." node_paths=PackedStringArray("positioning_marker", "child_to_position")]
 size = Vector2i(192, 192)
 script = ExtResource("2_q4f2r")
@@ -64,13 +63,20 @@ positioning_marker = NodePath("../PositioningMarkers/LeftFrontPositioningMarker"
 child_to_position = NodePath("LeftFrontCamera")
 
 [node name="LeftFrontCamera" type="Node3D" parent="SubViewport2"]
-transform = Transform3D(0.824442, 0, 0.565946, 0, 1, 0, -0.565946, 0, 0.824442, -2.59674, 3.70307, -3.00527)
+transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, -2.51735, 3.70307, -2.376)
 
 [node name="Camera3D" type="Camera3D" parent="SubViewport2/LeftFrontCamera"]
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="SubViewport2/LeftFrontCamera"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.255131)
-mesh = SubResource("BoxMesh_cntim")
+[node name="SubViewport3" type="SubViewport" parent="." node_paths=PackedStringArray("positioning_marker", "child_to_position")]
+size = Vector2i(192, 192)
+script = ExtResource("2_q4f2r")
+positioning_marker = NodePath("../PositioningMarkers/RightFrontPositioningMarker")
+child_to_position = NodePath("RightFrontCamera")
+
+[node name="RightFrontCamera" type="Node3D" parent="SubViewport3"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 2.27866, 3.70307, -2.25057)
+
+[node name="Camera3D" type="Camera3D" parent="SubViewport3/RightFrontCamera"]
 
 [node name="Floor" type="MeshInstance3D" parent="."]
 mesh = SubResource("BoxMesh_ev6ex")
@@ -81,42 +87,34 @@ mesh = SubResource("BoxMesh_ev6ex")
 
 [node name="Floor2" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 1.98501, -2.22691)
-visible = false
 mesh = SubResource("BoxMesh_3ssp7")
 
 [node name="Floor6" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -0.0174352, 1.98501, 2.20386)
-visible = false
 mesh = SubResource("BoxMesh_3ssp7")
 
 [node name="Floor7" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.520354, -0.853951, -3.73274e-08, 0, -4.37114e-08, 1, -0.853951, -0.520354, -2.27454e-08, 1.78589, 2.06276, 1.51333)
-visible = false
 mesh = SubResource("BoxMesh_3ssp7")
 
 [node name="Floor3" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.866025, -0.5, -2.18557e-08, 0, -4.37114e-08, 1, -0.5, -0.866025, -3.78552e-08, -1.62685, 1.98501, -1.85183)
-visible = false
 mesh = SubResource("BoxMesh_3ssp7")
 
 [node name="Floor4" type="MeshInstance3D" parent="."]
 transform = Transform3D(-5.96046e-08, -1, -4.37114e-08, 0, -4.37114e-08, 1, -1, 5.96046e-08, 1.77636e-15, -2.19032, 1.98501, -0.05558)
-visible = false
 mesh = SubResource("BoxMesh_3ssp7")
 
 [node name="Floor8" type="MeshInstance3D" parent="."]
 transform = Transform3D(-5.96046e-08, -1, -4.37114e-08, 0, -4.37114e-08, 1, -1, 5.96046e-08, 1.77636e-15, 2.25322, 1.98501, -0.05558)
-visible = false
 mesh = SubResource("BoxMesh_3ssp7")
 
 [node name="Floor9" type="MeshInstance3D" parent="."]
 transform = Transform3D(-0.617818, -0.786321, -3.43712e-08, 0, -4.37114e-08, 1, -0.786321, 0.617818, 2.70057e-08, 1.84594, 1.98501, -1.60134)
-visible = false
 mesh = SubResource("BoxMesh_3ssp7")
 
 [node name="Floor5" type="MeshInstance3D" parent="."]
 transform = Transform3D(-0.707107, -0.707107, -3.09086e-08, 0, -4.37114e-08, 1, -0.707107, 0.707107, 3.09086e-08, -1.83382, 1.98501, 1.74711)
-visible = false
 mesh = SubResource("BoxMesh_3ssp7")
 
 [node name="PlayerCamera" type="Node3D" parent="."]
@@ -139,13 +137,17 @@ transform = Transform3D(0.5, 0, 0, 0, 0.5, 2.98023e-08, 0, -2.98023e-08, 0.5, 0,
 texture = SubResource("ViewportTexture_8gfnw")
 
 [node name="Monitor2" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.989599, 0.143855, 0, -0.143855, 0.989599, 1.09446, 1.75541, -2.0216)
+transform = Transform3D(0.869883, 0, -0.493259, 0.0709577, 0.989599, 0.125137, 0.488128, -0.143855, 0.860835, 1.28146, 1.80178, -1.7026)
 mesh = SubResource("BoxMesh_6khfr")
 
+[node name="Sprite3D" type="Sprite3D" parent="Monitor2"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 3.72529e-08, 0, -3.72529e-08, 0.5, 0, 5.65052e-05, 0.50315)
+texture = SubResource("ViewportTexture_fwr4x")
+
 [node name="Monitor3" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.989599, 0.143855, 0, -0.143855, 0.989599, -1.23994, 1.75541, -2.0216)
+transform = Transform3D(0.778101, -1.86265e-09, 0.62814, -0.090361, 0.989599, 0.111934, -0.621606, -0.143855, 0.770008, -1.38319, 1.82394, -1.5502)
 mesh = SubResource("BoxMesh_6khfr")
 
 [node name="Sprite3D" type="Sprite3D" parent="Monitor3"]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 2.98023e-08, 0, -2.98023e-08, 0.5, 0, 5.65052e-05, 0.50315)
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 3.72529e-08, 0, -3.72529e-08, 0.5, 0, 5.65052e-05, 0.50315)
 texture = SubResource("ViewportTexture_73dax")
