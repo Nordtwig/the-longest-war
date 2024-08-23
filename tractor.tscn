@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://dq7ilxoadvyin"]
+[gd_scene load_steps=17 format=3 uid="uid://dq7ilxoadvyin"]
 
 [ext_resource type="Script" path="res://tractor.gd" id="1_36jy7"]
 [ext_resource type="Script" path="res://tractor_camera.gd" id="2_q4f2r"]
@@ -23,21 +23,141 @@ size = Vector3(4, 0.5, 4)
 [sub_resource type="BoxMesh" id="BoxMesh_6khfr"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_8gfnw"]
-viewport_path = NodePath("SubViewport")
+viewport_path = NodePath("Viewports/SubViewport")
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_fwr4x"]
-viewport_path = NodePath("SubViewport3")
+viewport_path = NodePath("Viewports/SubViewport3")
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_73dax"]
-viewport_path = NodePath("SubViewport2")
+viewport_path = NodePath("Viewports/SubViewport2")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_5ljy2"]
+viewport_path = NodePath("Viewports/BackCameraViewport")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_qm13v"]
+viewport_path = NodePath("Viewports/RightBackCamera")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_t8nk1"]
+viewport_path = NodePath("Viewports/RightBackCamera")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_b13oa"]
+viewport_path = NodePath("Viewports/LeftCameraViewport")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_u5grs"]
+viewport_path = NodePath("Viewports/LeftBackCamera")
 
 [node name="Tractor" type="Node3D"]
 script = ExtResource("1_36jy7")
+
+[node name="Viewports" type="Node" parent="."]
+
+[node name="SubViewport" type="SubViewport" parent="Viewports" node_paths=PackedStringArray("positioning_marker", "child_to_position")]
+size = Vector2i(192, 192)
+script = ExtResource("2_q4f2r")
+positioning_marker = NodePath("../../PositioningMarkers/FrontPositioningMarker")
+child_to_position = NodePath("FrontCamera")
+
+[node name="FrontCamera" type="Node3D" parent="Viewports/SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.70307, -3.20584)
+
+[node name="Camera3D" type="Camera3D" parent="Viewports/SubViewport/FrontCamera"]
+
+[node name="SubViewport2" type="SubViewport" parent="Viewports" node_paths=PackedStringArray("positioning_marker", "child_to_position")]
+size = Vector2i(192, 192)
+script = ExtResource("2_q4f2r")
+positioning_marker = NodePath("../../PositioningMarkers/LeftFrontPositioningMarker")
+child_to_position = NodePath("LeftFrontCamera")
+
+[node name="LeftFrontCamera" type="Node3D" parent="Viewports/SubViewport2"]
+transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, -2.51735, 3.70307, -2.376)
+
+[node name="Camera3D" type="Camera3D" parent="Viewports/SubViewport2/LeftFrontCamera"]
+
+[node name="SubViewport3" type="SubViewport" parent="Viewports" node_paths=PackedStringArray("positioning_marker", "child_to_position")]
+size = Vector2i(192, 192)
+script = ExtResource("2_q4f2r")
+positioning_marker = NodePath("../../PositioningMarkers/RightFrontPositioningMarker")
+child_to_position = NodePath("RightFrontCamera")
+
+[node name="RightFrontCamera" type="Node3D" parent="Viewports/SubViewport3"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 2.27866, 3.70307, -2.25057)
+
+[node name="Camera3D" type="Camera3D" parent="Viewports/SubViewport3/RightFrontCamera"]
+
+[node name="BackCameraViewport" type="SubViewport" parent="Viewports" node_paths=PackedStringArray("positioning_marker", "child_to_position")]
+size = Vector2i(192, 192)
+script = ExtResource("2_q4f2r")
+positioning_marker = NodePath("../../PositioningMarkers/BackPositioningMarker")
+child_to_position = NodePath("BackCamera")
+
+[node name="BackCamera" type="Node3D" parent="Viewports/BackCameraViewport"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.0452837, 3.70307, 3.11002)
+
+[node name="Camera3D" type="Camera3D" parent="Viewports/BackCameraViewport/BackCamera"]
+
+[node name="RightCameraViewport" type="SubViewport" parent="Viewports" node_paths=PackedStringArray("positioning_marker", "child_to_position")]
+size = Vector2i(192, 192)
+script = ExtResource("2_q4f2r")
+positioning_marker = NodePath("../../PositioningMarkers/RightPositioningMarker")
+child_to_position = NodePath("RightCamera")
+
+[node name="RightCamera" type="Node3D" parent="Viewports/RightCameraViewport"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 3.33543, 3.86243, -0.238399)
+
+[node name="Camera3D" type="Camera3D" parent="Viewports/RightCameraViewport/RightCamera"]
+
+[node name="LeftCameraViewport" type="SubViewport" parent="Viewports" node_paths=PackedStringArray("positioning_marker", "child_to_position")]
+size = Vector2i(192, 192)
+script = ExtResource("2_q4f2r")
+positioning_marker = NodePath("../../PositioningMarkers/LeftPositioningMarker")
+child_to_position = NodePath("LeftCamera")
+
+[node name="LeftCamera" type="Node3D" parent="Viewports/LeftCameraViewport"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -2.81937, 3.86243, -0.343746)
+
+[node name="Camera3D" type="Camera3D" parent="Viewports/LeftCameraViewport/LeftCamera"]
+
+[node name="LeftBackCamera" type="SubViewport" parent="Viewports" node_paths=PackedStringArray("positioning_marker", "child_to_position")]
+size = Vector2i(192, 192)
+script = ExtResource("2_q4f2r")
+positioning_marker = NodePath("../../PositioningMarkers/LeftBackPositioningMarker")
+child_to_position = NodePath("LeftBackCamera")
+
+[node name="LeftBackCamera" type="Node3D" parent="Viewports/LeftBackCamera"]
+transform = Transform3D(-0.642788, 0, 0.766044, 0, 1, 0, -0.766044, 0, -0.642788, -2.15727, 3.86243, 2.16995)
+
+[node name="Camera3D" type="Camera3D" parent="Viewports/LeftBackCamera/LeftBackCamera"]
+
+[node name="RightBackCamera" type="SubViewport" parent="Viewports" node_paths=PackedStringArray("positioning_marker", "child_to_position")]
+size = Vector2i(192, 192)
+script = ExtResource("2_q4f2r")
+positioning_marker = NodePath("../../PositioningMarkers/RightBackPositioningMarker")
+child_to_position = NodePath("RightBackCamera")
+
+[node name="RightBackCamera" type="Node3D" parent="Viewports/RightBackCamera"]
+transform = Transform3D(-0.642788, 0, -0.766044, 0, 1, 0, 0.766044, 0, -0.642788, 2.322, 3.86243, 2.15599)
+
+[node name="Camera3D" type="Camera3D" parent="Viewports/RightBackCamera/RightBackCamera"]
 
 [node name="PositioningMarkers" type="Node3D" parent="."]
 
 [node name="FrontPositioningMarker" type="Marker3D" parent="PositioningMarkers"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.71543, -3.37914)
+
+[node name="RightPositioningMarker" type="Marker3D" parent="PositioningMarkers"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 3.42112, 3.71543, -0.189094)
+
+[node name="LeftPositioningMarker" type="Marker3D" parent="PositioningMarkers"]
+transform = Transform3D(-0.0129499, 0, 0.999916, 0, 1, 0, -0.999916, 0, -0.0129499, -3.29308, 3.51927, -0.206806)
+
+[node name="LeftBackPositioningMarker" type="Marker3D" parent="PositioningMarkers"]
+transform = Transform3D(-0.739572, 0, 0.673077, 0, 1, 0, -0.673077, 0, -0.739572, -2.22498, 3.71543, 2.20634)
+
+[node name="RightBackPositioningMarker" type="Marker3D" parent="PositioningMarkers"]
+transform = Transform3D(-0.59873, 0, -0.800951, 0, 1, 0, 0.800951, 0, -0.59873, 2.42765, 3.71543, 2.23273)
+
+[node name="BackPositioningMarker" type="Marker3D" parent="PositioningMarkers"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.0198433, 3.71543, 3.08435)
 
 [node name="LeftFrontPositioningMarker" type="Marker3D" parent="PositioningMarkers"]
 transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, -2.51997, 3.70307, -2.37485)
@@ -45,77 +165,55 @@ transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 
 [node name="RightFrontPositioningMarker" type="Marker3D" parent="PositioningMarkers"]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 2.37049, 3.70307, -2.29229)
 
-[node name="SubViewport" type="SubViewport" parent="." node_paths=PackedStringArray("positioning_marker", "child_to_position")]
-size = Vector2i(192, 192)
-script = ExtResource("2_q4f2r")
-positioning_marker = NodePath("../PositioningMarkers/FrontPositioningMarker")
-child_to_position = NodePath("FrontCamera")
-
-[node name="FrontCamera" type="Node3D" parent="SubViewport"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.70307, -3.42841)
-
-[node name="Camera3D" type="Camera3D" parent="SubViewport/FrontCamera"]
-
-[node name="SubViewport2" type="SubViewport" parent="." node_paths=PackedStringArray("positioning_marker", "child_to_position")]
-size = Vector2i(192, 192)
-script = ExtResource("2_q4f2r")
-positioning_marker = NodePath("../PositioningMarkers/LeftFrontPositioningMarker")
-child_to_position = NodePath("LeftFrontCamera")
-
-[node name="LeftFrontCamera" type="Node3D" parent="SubViewport2"]
-transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, -2.51735, 3.70307, -2.376)
-
-[node name="Camera3D" type="Camera3D" parent="SubViewport2/LeftFrontCamera"]
-
-[node name="SubViewport3" type="SubViewport" parent="." node_paths=PackedStringArray("positioning_marker", "child_to_position")]
-size = Vector2i(192, 192)
-script = ExtResource("2_q4f2r")
-positioning_marker = NodePath("../PositioningMarkers/RightFrontPositioningMarker")
-child_to_position = NodePath("RightFrontCamera")
-
-[node name="RightFrontCamera" type="Node3D" parent="SubViewport3"]
-transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 2.27866, 3.70307, -2.25057)
-
-[node name="Camera3D" type="Camera3D" parent="SubViewport3/RightFrontCamera"]
-
 [node name="Floor" type="MeshInstance3D" parent="."]
 mesh = SubResource("BoxMesh_ev6ex")
 
 [node name="Roof" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0)
+visible = false
 mesh = SubResource("BoxMesh_ev6ex")
 
-[node name="Floor2" type="MeshInstance3D" parent="."]
+[node name="Walls" type="Node3D" parent="."]
+
+[node name="Floor2" type="MeshInstance3D" parent="Walls"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 1.98501, -2.22691)
 mesh = SubResource("BoxMesh_3ssp7")
+skeleton = NodePath("../..")
 
-[node name="Floor6" type="MeshInstance3D" parent="."]
+[node name="Floor6" type="MeshInstance3D" parent="Walls"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -0.0174352, 1.98501, 2.20386)
 mesh = SubResource("BoxMesh_3ssp7")
+skeleton = NodePath("../..")
 
-[node name="Floor7" type="MeshInstance3D" parent="."]
+[node name="Floor7" type="MeshInstance3D" parent="Walls"]
 transform = Transform3D(0.520354, -0.853951, -3.73274e-08, 0, -4.37114e-08, 1, -0.853951, -0.520354, -2.27454e-08, 1.78589, 2.06276, 1.51333)
 mesh = SubResource("BoxMesh_3ssp7")
+skeleton = NodePath("../..")
 
-[node name="Floor3" type="MeshInstance3D" parent="."]
+[node name="Floor3" type="MeshInstance3D" parent="Walls"]
 transform = Transform3D(0.866025, -0.5, -2.18557e-08, 0, -4.37114e-08, 1, -0.5, -0.866025, -3.78552e-08, -1.62685, 1.98501, -1.85183)
 mesh = SubResource("BoxMesh_3ssp7")
+skeleton = NodePath("../..")
 
-[node name="Floor4" type="MeshInstance3D" parent="."]
+[node name="Floor4" type="MeshInstance3D" parent="Walls"]
 transform = Transform3D(-5.96046e-08, -1, -4.37114e-08, 0, -4.37114e-08, 1, -1, 5.96046e-08, 1.77636e-15, -2.19032, 1.98501, -0.05558)
 mesh = SubResource("BoxMesh_3ssp7")
+skeleton = NodePath("../..")
 
-[node name="Floor8" type="MeshInstance3D" parent="."]
+[node name="Floor8" type="MeshInstance3D" parent="Walls"]
 transform = Transform3D(-5.96046e-08, -1, -4.37114e-08, 0, -4.37114e-08, 1, -1, 5.96046e-08, 1.77636e-15, 2.25322, 1.98501, -0.05558)
 mesh = SubResource("BoxMesh_3ssp7")
+skeleton = NodePath("../..")
 
-[node name="Floor9" type="MeshInstance3D" parent="."]
+[node name="Floor9" type="MeshInstance3D" parent="Walls"]
 transform = Transform3D(-0.617818, -0.786321, -3.43712e-08, 0, -4.37114e-08, 1, -0.786321, 0.617818, 2.70057e-08, 1.84594, 1.98501, -1.60134)
 mesh = SubResource("BoxMesh_3ssp7")
+skeleton = NodePath("../..")
 
-[node name="Floor5" type="MeshInstance3D" parent="."]
+[node name="Floor5" type="MeshInstance3D" parent="Walls"]
 transform = Transform3D(-0.707107, -0.707107, -3.09086e-08, 0, -4.37114e-08, 1, -0.707107, 0.707107, 3.09086e-08, -1.83382, 1.98501, 1.74711)
 mesh = SubResource("BoxMesh_3ssp7")
+skeleton = NodePath("../..")
 
 [node name="PlayerCamera" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
@@ -137,7 +235,7 @@ transform = Transform3D(0.5, 0, 0, 0, 0.5, 2.98023e-08, 0, -2.98023e-08, 0.5, 0,
 texture = SubResource("ViewportTexture_8gfnw")
 
 [node name="Monitor2" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.869883, 0, -0.493259, 0.0709577, 0.989599, 0.125137, 0.488128, -0.143855, 0.860835, 1.28146, 1.80178, -1.7026)
+transform = Transform3D(0.798321, 0.0188739, -0.601938, 0.0709577, 0.989599, 0.125137, 0.598038, -0.142611, 0.788678, 1.33578, 1.80178, -1.49728)
 mesh = SubResource("BoxMesh_6khfr")
 
 [node name="Sprite3D" type="Sprite3D" parent="Monitor2"]
@@ -145,9 +243,49 @@ transform = Transform3D(0.5, 0, 0, 0, 0.5, 3.72529e-08, 0, -3.72529e-08, 0.5, 0,
 texture = SubResource("ViewportTexture_fwr4x")
 
 [node name="Monitor3" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.778101, -1.86265e-09, 0.62814, -0.090361, 0.989599, 0.111934, -0.621606, -0.143855, 0.770008, -1.38319, 1.82394, -1.5502)
+transform = Transform3D(0.719655, -0.0128104, 0.694214, -0.090361, 0.989599, 0.111934, -0.688427, -0.143283, 0.711013, -1.50305, 1.82394, -1.40862)
 mesh = SubResource("BoxMesh_6khfr")
 
 [node name="Sprite3D" type="Sprite3D" parent="Monitor3"]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 3.72529e-08, 0, -3.72529e-08, 0.5, 0, 5.65052e-05, 0.50315)
 texture = SubResource("ViewportTexture_73dax")
+
+[node name="Monitor4" type="MeshInstance3D" parent="."]
+transform = Transform3D(-0.999998, -0.00169427, -0.000419127, -0.00172705, 0.995239, 0.0974436, 0.000252036, 0.0974441, -0.995241, -0.0577376, 1.87718, 1.99931)
+mesh = SubResource("BoxMesh_6khfr")
+
+[node name="Sprite3D" type="Sprite3D" parent="Monitor4"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 2.98023e-08, 0, -2.98023e-08, 0.5, 0, 5.65052e-05, 0.50315)
+texture = SubResource("ViewportTexture_5ljy2")
+
+[node name="Monitor7" type="MeshInstance3D" parent="."]
+transform = Transform3D(-0.704256, 0.0679692, -0.706685, -0.00172705, 0.995239, 0.0974436, 0.709944, 0.0698457, -0.700786, 1.36319, 1.87718, 1.44886)
+mesh = SubResource("BoxMesh_6khfr")
+
+[node name="Sprite3D" type="Sprite3D" parent="Monitor7"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 2.98023e-08, 0, -2.98023e-08, 0.5, 0, 5.65052e-05, 0.50315)
+texture = SubResource("ViewportTexture_qm13v")
+
+[node name="Monitor8" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.0637387, 0.0973551, -0.993207, -0.00172705, 0.995239, 0.0974436, 0.997965, -0.0044956, 0.0636033, 1.91956, 1.87718, -0.108792)
+mesh = SubResource("BoxMesh_6khfr")
+
+[node name="Sprite3D" type="Sprite3D" parent="Monitor8"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 2.98023e-08, 0, -2.98023e-08, 0.5, 0, 5.65052e-05, 0.50315)
+texture = SubResource("ViewportTexture_t8nk1")
+
+[node name="Monitor5" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.00173762, -0.0974406, 0.99524, -0.00172705, 0.995239, 0.0974436, -0.999997, -0.00188814, 0.00156105, -1.97831, 1.87718, -0.0799194)
+mesh = SubResource("BoxMesh_6khfr")
+
+[node name="Sprite3D" type="Sprite3D" parent="Monitor5"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 2.98023e-08, 0, -2.98023e-08, 0.5, 0, 5.65052e-05, 0.50315)
+texture = SubResource("ViewportTexture_b13oa")
+
+[node name="Monitor6" type="MeshInstance3D" parent="."]
+transform = Transform3D(-0.64302, -0.0757324, 0.762096, -0.00172704, 0.995239, 0.0974436, -0.765848, 0.061342, -0.64009, -1.50828, 1.87718, 1.41988)
+mesh = SubResource("BoxMesh_6khfr")
+
+[node name="Sprite3D" type="Sprite3D" parent="Monitor6"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 2.98023e-08, 0, -2.98023e-08, 0.5, 0, 5.65052e-05, 0.50315)
+texture = SubResource("ViewportTexture_u5grs")
