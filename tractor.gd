@@ -21,6 +21,11 @@ func _process(delta: float) -> void:
 		rotate_y(_turn_rate)
 	elif Input.is_action_pressed("turn_right"):
 		rotate_y(-_turn_rate)
+	
+	if Input.is_action_pressed("move_forward"):
+		position.z -= 0.1
+	elif Input.is_action_pressed("move_backward"):
+		position.z += 0.1
 
 	# looking
 	player_camera.rotate_y(-_camera_look_input.x * _look_sensitivity)

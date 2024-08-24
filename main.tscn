@@ -3,8 +3,11 @@
 [ext_resource type="PackedScene" uid="uid://dq7ilxoadvyin" path="res://tractor.tscn" id="1_nmc44"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_b2i2x"]
-sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
-ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+sky_top_color = Color(0.281489, 0.270482, 0.182186, 1)
+sky_horizon_color = Color(0.269225, 0.264327, 0.233984, 1)
+ground_horizon_color = Color(0.25678, 0.263616, 0.274406, 1)
+sun_angle_max = 50.0
+sun_curve = 0.0923359
 
 [sub_resource type="Sky" id="Sky_bra7f"]
 sky_material = SubResource("ProceduralSkyMaterial_b2i2x")
@@ -29,6 +32,7 @@ size = Vector3(10, 10, 10)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+light_color = Color(0.674298, 0.63919, 0.446381, 1)
 shadow_enabled = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]

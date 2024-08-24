@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://dq7ilxoadvyin"]
+[gd_scene load_steps=19 format=3 uid="uid://dq7ilxoadvyin"]
 
 [ext_resource type="Script" path="res://tractor.gd" id="1_36jy7"]
 [ext_resource type="Script" path="res://tractor_camera.gd" id="2_q4f2r"]
@@ -24,6 +24,13 @@ size = Vector3(4, 0.5, 4)
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_8gfnw"]
 viewport_path = NodePath("Viewports/SubViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_w5bt4"]
+albedo_color = Color(0, 0.627451, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_dmlld"]
+material = SubResource("StandardMaterial3D_w5bt4")
+size = Vector3(0.2, 0.2, 0.2)
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_fwr4x"]
 viewport_path = NodePath("Viewports/SubViewport3")
@@ -170,7 +177,6 @@ mesh = SubResource("BoxMesh_ev6ex")
 
 [node name="Roof" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0)
-visible = false
 mesh = SubResource("BoxMesh_ev6ex")
 
 [node name="Walls" type="Node3D" parent="."]
@@ -223,7 +229,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.90666, 0)
 light_color = Color(0.726246, 0, 0, 1)
-light_energy = 50.0
+light_energy = 15.0
 omni_range = 10.0
 
 [node name="Monitor" type="MeshInstance3D" parent="."]
@@ -233,6 +239,10 @@ mesh = SubResource("BoxMesh_6khfr")
 [node name="Sprite3D" type="Sprite3D" parent="Monitor"]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 2.98023e-08, 0, -2.98023e-08, 0.5, 0, 5.65052e-05, 0.50315)
 texture = SubResource("ViewportTexture_8gfnw")
+
+[node name="Monitor9" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.989599, 0.143855, 0, -0.143855, 0.989599, -0.0585369, 2.58256, -2.01925)
+mesh = SubResource("BoxMesh_dmlld")
 
 [node name="Monitor2" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.798321, 0.0188739, -0.601938, 0.0709577, 0.989599, 0.125137, 0.598038, -0.142611, 0.788678, 1.33578, 1.80178, -1.49728)
