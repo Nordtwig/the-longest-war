@@ -42,7 +42,7 @@ environment = SubResource("Environment_buvk3")
 mesh = SubResource("PlaneMesh_nbpdq")
 
 [node name="House" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.00171, 4.91296, -42.93)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.00171, 4.91296, -44.6829)
 mesh = SubResource("BoxMesh_6ayrp")
 
 [node name="House2" type="MeshInstance3D" parent="."]
@@ -61,12 +61,40 @@ mesh = SubResource("BoxMesh_6ayrp")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.855, 15.3543, 27.4143)
 mesh = SubResource("BoxMesh_6ayrp")
 
+[node name="House8" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 31.9197, 4.91296, 9.44894)
+mesh = SubResource("BoxMesh_6ayrp")
+
+[node name="House9" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 31.9197, 15.3543, 9.44894)
+mesh = SubResource("BoxMesh_6ayrp")
+
+[node name="House10" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 31.9197, 4.91296, 23.2012)
+mesh = SubResource("BoxMesh_6ayrp")
+
+[node name="House11" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 31.9197, 15.3543, 23.2012)
+mesh = SubResource("BoxMesh_6ayrp")
+
+[node name="House12" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 31.9197, 4.91296, 37.7436)
+mesh = SubResource("BoxMesh_6ayrp")
+
+[node name="House13" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 31.9197, 15.3543, 37.7436)
+mesh = SubResource("BoxMesh_6ayrp")
+
 [node name="House7" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.695585, 0.639018, -0.328356, -0.676529, 0.736416, 0, 0.241806, 0.222142, 0.944554, 10.5678, 4.30902, -37.3893)
+transform = Transform3D(0.695585, 0.639018, -0.328356, -0.676529, 0.736416, 0, 0.241806, 0.222142, 0.944554, 10.5678, 4.30902, -39.1422)
 mesh = SubResource("BoxMesh_6ayrp")
 
 [node name="House3" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32.1162, 4.91296, -21.8685)
+mesh = SubResource("BoxMesh_6ayrp")
+
+[node name="House14" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.469803, 4.91296, -19.07)
 mesh = SubResource("BoxMesh_6ayrp")
 
 [node name="Tractor" parent="." instance=ExtResource("1_nmc44")]
